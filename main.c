@@ -34,6 +34,30 @@ char **split_line(char *line){
     tokens[position] = NULL;
     return tokens;
 }
+
+int launch(char **args){
+    pid_t pid, wpid;
+    int status;
+
+    pid = fork();
+    if(pid == 0){
+        if(execvp(args[0],args) == -1){
+            perror("Error");
+        }
+        exit(EXIT_FAILURE);
+    }elseif(pid<0){
+        perror("Error");
+    }else{
+        do{
+            wpid = waitpid(pid, &status, WUNTRACED);
+        }while(!WIFEXITED(status) && !WIFSIGNALED(status));
+    }
+    return 1;
+}
+
+
+}
+
 void my_loop(void){
     char *line;
     char **args;
