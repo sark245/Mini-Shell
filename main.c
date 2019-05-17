@@ -55,8 +55,61 @@ int launch(char **args){
     return 1;
 }
 
+/**************************************************************************///For Builtin Commands
+int my_cd(char **args);
+int my_help(char **args);
+int my_exit(char **args);
 
+cahr builtin_str[] = {
+    "cd",
+    "help",
+    "exit"
+};
+int (*builtin_func[])(char **) = {
+    &my_cd,
+    &my_help,
+    &my_exit
+};
+
+int my_num_builtins(){
+    return sizeof(builtin_str)/sizeof(char *);
 }
+int my_cd(char **args)
+{
+    if(args[1] == NULL){ 
+        fprintf(stderr, "E: Expected argument to \"cd\"\n");
+    }
+    else{
+        if(chdir(args[1])!=0){
+            perror("Error");
+        }
+    }
+    return 1;
+}
+
+int my_help(char **args){
+    int i;
+    printf("Sarthak Kathuria's Miniatur Shell\n");
+     printf("Type program names and arguments, and hit enter.\n");
+    printf("The following are built in:\n");
+
+  for (i = 0; i < lsh_num_builtins(); i++) {
+    printf("  %s\n", builtin_str[i]);
+  }
+   printf("Use the man command for information on other programs.\n");
+   return 1;
+    }
+
+    int lsh_exit(char **args)
+    {
+     return 0;
+    }
+
+
+
+
+
+/**************************************************************************/
 
 void my_loop(void){
     char *line;
