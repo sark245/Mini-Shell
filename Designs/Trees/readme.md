@@ -12,5 +12,5 @@ The first one I added was to Serialise and Deserialise an N-Ary Tree.
 The code is quite simple enough to understand. _We simply add a marker whenever we want to denote the end of children._
 
 
-30/7/2020: Added Inorder Traversal of Binary Tree using Stack instead of Recursion
-ToDO: Use this method to implement an iterator for Binary Tree..
+**30/7/2020**: Added Inorder Traversal of Binary Tree using Stack instead of Recursion  
+**ToDO**: Use this method to implement an iterator for Binary Tree..
